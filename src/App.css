@@ -16,11 +16,14 @@
 }
 
 .App-body {
-  text-align: center;
   height: 500px;
   color: black;
   margin-right: 0px;
   margin-left: 0px;
+}
+
+table tr {
+  line-height: 2.1;
 }
 
 /*@keyframes App-logo-spin {

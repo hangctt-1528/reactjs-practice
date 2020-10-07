@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../../../App.css';
 
 export default class TableUserList extends Component {
   constructor(props) {
@@ -52,7 +53,7 @@ export default class TableUserList extends Component {
       });
     return (
       <div className="table">
-        <table className="table table-striped">
+        <table className="table table-responsive-sm">
           <thead>
             <tr>
               <th>Name</th>

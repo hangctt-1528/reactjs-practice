@@ -8,12 +8,12 @@ export default class Body extends Component {
     super(props);
     this.state = {
       userList: [
-        {name: "Tran Van Tong", email: "tongA@gmail.com"},
+        {name: "Vo Tong", email: "tongA@gmail.com"},
         {name: "Hoang Ha Phuong", email: "tongA@gmail.com"},
-        {name: "Chu Hong Yen", email: "tongA@gmail.com"},
-        {name: "Chu Hong Nhi", email: "tongA@gmail.com"},
+        {name: "Hong Yen", email: "tongA@gmail.com"},
+        {name: "Linh La", email: "tongA@gmail.com"},
         {name: "Hoang Thu Ha", email: "tongA@gmail.com"},
-        {name: "Ha Phuong Phuong", email: "tongA@gmail.com"},
+        {name: "Phanh Lee", email: "tongA@gmail.com"},
       ],
       isEdit: false,
       editIndex: -1,
