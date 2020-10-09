@@ -8,12 +8,23 @@ export default class Body extends Component {
     super(props);
     this.state = {
       userList: [
-        {name: "Tran Van Tong", email: "tongA@gmail.com"},
-        {name: "Hoang Ha Phuong", email: "tongA@gmail.com"},
-        {name: "Chu Hong Yen", email: "tongA@gmail.com"},
-        {name: "Chu Hong Nhi", email: "tongA@gmail.com"},
-        {name: "Hoang Thu Ha", email: "tongA@gmail.com"},
-        {name: "Ha Phuong Phuong", email: "tongA@gmail.com"},
+        {id: 0, name: "Tran Van Tong 1", email: "tongA@gmail.com"},
+        {id: 1, name: "Hoang Ha Phuong 2", email: "tongA@gmail.com"},
+        {id: 2, name: "Chu Hong Yen 3", email: "tongA@gmail.com"},
+        {id: 3, name: "Chu Hong Nhi 4", email: "tongA@gmail.com"},
+        {id: 4, name: "Hoang Thu Ha 5", email: "tongA@gmail.com"},
+        {id: 5, name: "Ha Phuong Phuong 6", email: "tongA@gmail.com"},
+        {id: 6, name: "Hoang Ha Phuong 7", email: "tongA@gmail.com"},
+        {id: 7, name: "Chu Hong Yen 8", email: "tongA@gmail.com"},
+        {id: 8, name: "Chu Hong Nhi 9", email: "tongA@gmail.com"},
+        {id: 9, name: "Hoang Thu Ha 10", email: "tongA@gmail.com"},
+        {id: 10, name: "Ha Phuong Phuong 11", email: "tongA@gmail.com"},
+        {id: 11, name: "Ha Phuong Phuong 12", email: "tongA@gmail.com"},
+        {id: 12, name: "Hoang Ha Phuong 13", email: "tongA@gmail.com"},
+        {id: 13, name: "Chu Hong Yen 14", email: "tongA@gmail.com"},
+        {id: 14, name: "Chu Hong Nhi 15", email: "tongA@gmail.com"},
+        {id: 15, name: "Hoang Thu Ha 16", email: "tongA@gmail.com"},
+        {id: 16, name: "Ha Phuong Phuong 17", email: "tongA@gmail.com"},
       ],
       isEdit: false,
       editIndex: -1,
@@ -27,11 +38,13 @@ export default class Body extends Component {
     this.setState({isEdit: editFlag, editIndex: index, currentUser: user})
   }
   async UpdateUserList (user) {
+
     const userList = [...this.state.userList];
 
-    userList[this.state.editIndex] = user;
+    const listUser = userList.map(item => 
+      item.id === user.id ? user : item );
     await this.setState({
-      userList: userList,
+      userList: listUser,
       isEdit: false,
       editIndex: -1,
       currentUser: {}

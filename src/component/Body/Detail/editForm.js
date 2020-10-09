@@ -5,6 +5,7 @@ export default class EditForm extends Component {
     super(props);
     this.state = {
       user: {
+        id: this.props.currentUser.id,
         name: this.props.currentUser.name,
         email: this.props.currentUser.email
       }
@@ -18,9 +19,6 @@ export default class EditForm extends Component {
     this.setState({
         user,
     });
-  }
-  handleSubmit = (event) => {
-    this.props.onSaveEdit(this.state.user)
   }
   render() {
     return (
@@ -46,18 +44,18 @@ export default class EditForm extends Component {
             onChange={(event) => this.handleChange(event)}>
             </input>
           </div>
-          <button
-          type="submit"
-          className="btn btn-primary float-left"
-          onClick={() => this.props.onCancelEdit(false, -1)}>
-            Cancel
-          </button>
-          <button
-          type="submit"
-          className="btn btn-primary float-right"
-          onClick={(event) => this.handleSubmit(event)}>
-            Save
-          </button>
+            <button
+            type="submit"
+            className="btn btn-primary float-left"
+            onClick={() => this.props.onCancelEdit(false, -1)}>
+              Cancel
+            </button>
+            <button
+            type="submit"
+            className="btn btn-primary float-right"
+            onClick={() => this.props.onSaveEdit(this.state.user)}>
+              Save
+            </button>
         </form>
       </div>
     );

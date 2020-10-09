@@ -16,12 +16,20 @@
 }
 
 .App-body {
-  text-align: center;
   height: 500px;
   color: black;
   margin-right: 0px;
   margin-left: 0px;
 }
+
+.validation {
+  display:none;
+  margin: 0 0 10px;
+  font-weight:400;
+  font-size:13px;
+  color: #DE5959;
+}
+
 
 /*@keyframes App-logo-spin {
   from { transform: rotate(0deg); }
