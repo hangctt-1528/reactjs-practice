@@ -11,6 +11,7 @@ export default class TableUserList extends Component {
       pageIndex: 1,
       cursor: 0
     }
+    this.escFunction = this.escFunction.bind(this);
   }
   mouseEnter = (index) => {
     if (!this.props.isEdit) {
@@ -26,21 +27,18 @@ export default class TableUserList extends Component {
     // update state with new page of items
     this.setState({ pageOfItems: pageOfItems });
   }
-  escFunction = ( e ) => {
-    console.log(e.keyCode)
-    const { cursor, pageOfItems } = this.state
+  escFunction = (e) => {
+    const { hoverIndex, pageOfItems } = this.state
     // arrow up/down button should select next/previous list element
-    if (e.keyCode === 38 && cursor > 0) {
+    if (e.keyCode === 38 && hoverIndex > -1) {
       this.setState( prevState => ({
-        cursor: prevState.cursor - 1
+        hoverIndex: prevState.hoverIndex - 1
       }))
-      console.log(this.state.cursor)
-    } else if (e.keyCode === 40 && cursor < pageOfItems.length - 1) {
+    } else if (e.keyCode === 40 && hoverIndex < pageOfItems.length - 1) {
       this.setState( prevState => ({
-        cursor: prevState.cursor + 1
+        hoverIndex: prevState.hoverIndex + 1
       }))
-      console.log(this.state.cursor)
-    }
+    } 
   }
   componentWillMount() {
     document.addEventListener("keydown", this.escFunction.bind(this));
@@ -54,32 +52,31 @@ export default class TableUserList extends Component {
     const user = userList.map((item, index) => {
       return <tr
              key={index}
-             onKeyDown={this.escFunction}
              onMouseEnter={() => this.mouseEnter(index)}
              onMouseLeave={this.mouseLeave}>
-              <td>{item.name}</td>
-              <td>{item.email}</td>
-                <td>
-                  {(this.state.isHover && this.state.hoverIndex === index) && (
-                    <button
-                    type="button"
-                    className="btn btn-outline-success"
-                    onClick={()=>this.props.onChangeIsEdit(true, item.id, item)}
-                    >
-                      Edit
-                    </button>
-                  )}
-                </td>
-                <td>
-                  {(this.state.isHover && this.state.hoverIndex === index) && (
-                    <button
-                    type="button"
-                    className="btn btn-outline-danger"
-                    onClick={()=>this.props.onDeleteUser(item)}>
-                      Delete
-                    </button>
-                  )}
-                </td>
+              <td className="name">{item.name}</td>
+              <td className="email">{item.email}</td>
+              <td className="edit-action">
+                {(this.state.isHover && this.state.hoverIndex === index) && (
+                  <button
+                  type="button"
+                  className="btn btn-success btn-sm m-0"
+                  onClick={()=>this.props.onChangeIsEdit(true, item.id, item)}
+                  >
+                    Edit
+                  </button>
+                )}
+              </td>
+              <td className="delete-action">
+                {(this.state.isHover && this.state.hoverIndex === index) && (
+                  <button
+                  type="button"
+                  className="btn btn-danger btn-sm m-0 btn-delete"
+                  onClick={()=>this.props.onDeleteUser(item)}>
+                    Delete
+                  </button>
+                )}
+              </td>
             </tr>
       });
     return (
@@ -88,10 +85,10 @@ export default class TableUserList extends Component {
           <table className="table table-striped">
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th className="name-title">Name</th>
+                <th className="email-title">Email</th>
+                <th className="edit-title">Edit</th>
+                <th className="delete-title">Delete</th>
               </tr>
             </thead>
             <tbody>{user}</tbody>

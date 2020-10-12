@@ -21,7 +21,38 @@
   margin-right: 0px;
   margin-left: 0px;
 }
-
+tr {
+  height: 60px !important;
+}
+tr > td .btn-delete {
+  max-width: inherit;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+tr > .name {
+  width: 40%;
+}
+tr > .email {
+  width: 30%;
+}
+tr > .edit-action {
+  width: 90px;
+}
+tr > .delete-action {
+  width: 100px;
+}
+tr > .name-title {
+  width: 40%;
+}
+tr > .email-title {
+  width: 30%;
+}
+tr > .edit-title {
+  width: 90px;
+}
+tr > .delete-title {
+  width: 100px;
+}
 .validation {
   display:none;
   margin: 0 0 10px;

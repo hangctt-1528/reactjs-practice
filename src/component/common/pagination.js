@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 export default class Pagination extends React.Component {
   constructor(props) {
@@ -11,6 +11,7 @@ export default class Pagination extends React.Component {
     if (this.props.items && this.props.items.length) {
       this.setPage(this.props.initialPage);
     }
+    document.addEventListener("keydown", this.escFunction.bind(this));
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -90,6 +91,26 @@ export default class Pagination extends React.Component {
         pages: pages
     };
   }
+  checkPageUp = () => {
+    return (this.state.pager.currentPage < this.state.pager.totalPages && this.state.pager.currentPage > 0 && !this.props.isEdit);
+  }
+  checkPageDown = () => {
+    return (this.state.pager.currentPage <= this.state.pager.totalPages && this.state.pager.currentPage > 0 && !this.props.isEdit);
+  }
+  escFunction = (e) => {
+    // arrow up/down button should select next/previous list element
+    if (e.keyCode === 39 && this.checkPageUp()) {
+      const pageCurrent = this.state.pager.currentPage + 1;
+      this.setPage(pageCurrent);
+    } else if (e.keyCode === 37 && this.checkPageDown()) {
+      const pageCurrent = this.state.pager.currentPage - 1;
+      this.setPage(pageCurrent);
+    }
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.escFunction.bind(this));
+  }
 
   render() {
     var pager = this.state.pager;
@@ -101,7 +122,7 @@ export default class Pagination extends React.Component {
 
     return (
       <nav aria-label="Page navigation example">
-        <ul className="pagination">
+        <ul className="pagination justify-content-center">
           <li className={`page-item ${pager.currentPage === 1 ? 'disabled' : ''} ${(this.props.isEdit) ? 'disabled' : ''}`}>
             <a className="page-link" onClick={() => this.setPage(1)}>First</a>
           </li>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import WrapperEdit from './wrapperEdit';
 
 export default class EditForm extends Component {
   constructor(props) {
@@ -23,40 +24,19 @@ export default class EditForm extends Component {
   render() {
     return (
       <div>
-        <form>
-          <div className="form-group">
-            <input
-            type="text"
-            placeholder="Name"
-            value={this.state.user.name}
-            className="form-control"
-            name="name"
-            onChange={(event) => this.handleChange(event)}>
-            </input>
-          </div>
-          <div className="form-group">
-            <input
-            type="text"
-            placeholder="Email"
-            value={this.state.user.email}
-            className="form-control"
-            name="email"
-            onChange={(event) => this.handleChange(event)}>
-            </input>
-          </div>
-            <button
-            type="submit"
-            className="btn btn-primary float-left"
-            onClick={() => this.props.onCancelEdit(false, -1)}>
-              Cancel
-            </button>
-            <button
-            type="submit"
-            className="btn btn-primary float-right"
-            onClick={() => this.props.onSaveEdit(this.state.user)}>
-              Save
-            </button>
-        </form>
+        <WrapperEdit
+        currentUser={this.state.user}
+        onSaveEdit={this.props.onSaveEdit}
+        onCancelEdit={this.props.onCancelEdit}>
+          <input
+          type="text"
+          placeholder="Name"
+          name="name"/>
+          <input
+          type="text"
+          placeholder="Email"
+          name="email"/>
+        </WrapperEdit>
       </div>
     );
   }
